@@ -8,8 +8,11 @@ def home(request):
 #     return HttpResponse('This is our projects page')
 
 def projects(request):
-    return render(request, 'projects.html')
+    return render(request, 'projects/projects.html')
 
+
+#def project(request,pk):
+#    return HttpResponse('Project page: '+str(pk))
 
 def project(request,pk):
-    return HttpResponse('Project page: '+str(pk))
+    return render(request, 'projects/single-project.html')
