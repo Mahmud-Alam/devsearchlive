@@ -12,7 +12,37 @@
 
     {% block content%}
     <h1>Projects</h1>
+    <!-- <h2>Name : {{name}} </h2>
+    {% if age < 20%}
+    <h4>{{name}} is a teenager.</h4>
+    {%elif age == 20%}
+    <h4>{{name}} is  20</h4>
+    {% else%}
+    <h4>{{name}} age is {{age}}.</h4>
     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. A accusamus quo impedit omnis, libero repudiandae velit recusandae iure perspiciatis voluptates, deleniti quaerat aliquid molestias et totam assumenda! Cum ea esse nihil expedita harum ipsum quo quaerat a ipsam, rem, aut perferendis maiores quisquam. Itaque qui repellat, enim non, sapiente praesentium est corporis reiciendis sunt eos quasi eius voluptas eaque nulla tempora odit aliquam quae dolore distinctio obcaecati sequi tenetur? Blanditiis recusandae culpa ad dolorum repellat voluptatum corporis, beatae quis tempore maxime? Accusamus harum consequatur ea, minus id magni. Placeat nihil quos quisquam reprehenderit neque expedita consectetur aperiam iure laborum dignissimos.</p>
+    {%endif%} -->
+
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in projects %}
+            <tr>
+                <td>{{i.id}}</td>
+                <td>{{i.title}}{%if i.topRated%}<strong> [TOP RATED] </strong>{%endif%}</td>
+                <td>{{i.description}}</td>
+            </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+
+
     {% endblock content%}
 </body>
 </html>
