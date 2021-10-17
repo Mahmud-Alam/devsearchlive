@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Project
 
 projectsList = [
     {
@@ -25,26 +26,45 @@ projectsList = [
 def home(request):
     return HttpResponse("Welcome to Mahmud Alam's website!")
 
-# def projects(request):
+#1 def projects(request):
 #     return HttpResponse('This is our projects page')
 
+#2 def projects(request):
+#     #name = 'Mahmud Alam'
+#     #age  = 22
+#     #context = {'name':name,'age':age}
+#     context = {'projects':projectsList}
+#     return render(request, 'projects/projects.html',context)
+
 def projects(request):
-    #name = 'Mahmud Alam'
-    #age  = 22
-    #context = {'name':name,'age':age}
-    context = {'projects':projectsList}
+    projects = Project.objects.all()
+    #print('PROJECT:',projects)
+    context = {'projects':projects}
     return render(request, 'projects/projects.html',context)
 
 
-#def project(request,pk):
+
+
+# def project(request,pk):
 #    return HttpResponse('Project page: '+str(pk))
 
 #def project(request,pk):
 #    return render(request, 'projects/single-project.html')
 
+# def project(request, pk):
+#     projectObject = None
+#     for i in projectsList:
+#         if i['id'] == pk:
+#             projectObject = i
+#     return render(request, 'projects/single-project.html',{'project':projectObject})
+
+
 def project(request, pk):
-    projectObject = None
-    for i in projectsList:
-        if i['id'] == pk:
-            projectObject = i
-    return render(request, 'projects/single-project.html',{'project':projectObject})
+    projectObj = Project.objects.get(id=pk)
+    # new added line tags
+    #tags = projectObj.tags.all()
+    #reviews = projectObj.review_set.all()
+    #context = {'project':projectObj, 'tags':tags,'reviews':reviews}
+    context = {'project':projectObj}
+    return render(request, 'projects/single-project.html',context)
+    

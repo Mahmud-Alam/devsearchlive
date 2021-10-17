@@ -11,7 +11,16 @@
 
     {% block content%}
     <h1>{{project.title}}</h1>
+    {%for i in tags%}
+        <span class="tags" style="border: 1px solid grey; padding: 10px 20px; margin: 10px;">{{i}}</span>
+    {%endfor%}
+    <hr>
     <p>{{project.description}}</p>
+    <hr>
+    <h3>Reviews</h3>
+    {% for i in reviews %}
+        <p>{{i.body}}</p>
+    {%endfor%}
     {% endblock content%}
 </body>
 </html>
