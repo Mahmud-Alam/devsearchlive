@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Project
+from .forms import ProjectForm
 
 projectsList = [
     {
@@ -62,9 +63,22 @@ def projects(request):
 def project(request, pk):
     projectObj = Project.objects.get(id=pk)
     # new added line tags
-    #tags = projectObj.tags.all()
-    #reviews = projectObj.review_set.all()
-    #context = {'project':projectObj, 'tags':tags,'reviews':reviews}
-    context = {'project':projectObj}
+    tags = projectObj.tags.all()
+    reviews = projectObj.review_set.all()
+    context = {'project':projectObj, 'tags':tags,'reviews':reviews}
+    #context = {'project':projectObj}
     return render(request, 'projects/single-project.html',context)
-    
+
+
+# Session 3 
+
+def createProject(request):
+    form = ProjectForm()
+    if request.method == 'POST':
+        form = ProjectForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('projects')
+
+    context = {'form':form}
+    return render(request, 'projects/project-form.html', context)
