@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% extends 'main.html'%}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,9 +8,11 @@
     <title>Document</title>
 </head>
 <body>
-    {% extends 'main.html'%}
 
     {% block content%}
+
+    <img style="max-width: 500px" src="{{project.imageURL}}" alt="">
+
     <h1>{{project.title}}</h1>
     {%for i in tags%}
         <span class="tags" style="border: 1px solid grey; padding: 10px 20px; margin: 10px;">{{i}}</span>

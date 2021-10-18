@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+{% extends 'main.html'%}
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,9 +10,10 @@
 </head>
 <body>
     
-    {% extends 'main.html'%}
-
     {% block content%}
+
+    <img style="width: 200px;" src="{% static 'images/cat-image.jpeg' %}" alt="cat-image">
+
     <h1>Projects</h1>
     <!-- <h2>Name : {{name}} </h2>
     {% if age < 20%}
